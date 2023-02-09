@@ -50,11 +50,10 @@ app.post('/create', (req, res) => {
 app.delete('/', (req, res) => {
   const { ticketIds } = req.body;
 
-  dataTicket.map((val, i) => {
-    for (let ticketId of ticketIds) {
-      if (val.ticketId == ticketId) {
-        dataTicket.splice(i, 1);
-      }
+  ticketIds.forEach((ticketId) => {
+    let index = dataTicket.findIndex((val) => val.ticketId == ticketId);
+    if (index !== -1) {
+      dataTicket.splice(index, 1);
     }
   });
 
